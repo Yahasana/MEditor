@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过下列属性集
 // 控制。更改这些属性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("码德编辑器")]
-[assembly: AssemblyDescription("Markdown文档编辑器，纯自由软件")]
+[assembly: AssemblyTitle("Markdown")]
+[assembly: AssemblyDescription("Markdown 文档编辑器，纯自由软件")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("YihuiStudio")]
-[assembly: AssemblyProduct("码德编辑器")]
+[assembly: AssemblyProduct("Markdown Editor")]
 [assembly: AssemblyCopyright("版权所有 (C) YihuiStudio 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      内部版本号
 //      修订号
 //
-[assembly: AssemblyVersion("0.9.2.0")]
-[assembly: AssemblyFileVersion("0.9.2.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0")]

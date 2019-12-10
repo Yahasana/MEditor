@@ -312,26 +312,30 @@ th,td{padding:5px;border: 1px solid #CCC;}
 
         private void PreviewHtml()
         {
-            this.toolStripStatusLabel1.Text = " 正在转换。。。。 ";
-
             MarkdownEditor meditor = meditorManager.SetStyle();
             if (meditor == null)
+            {
                 return;
-            bool bhtml = filetypeConvert(meditor);
+            }
+
+            this.toolStripStatusLabel1.Text = " 正在转换。。。。 ";
+
+            if (filetypeConvert(meditor))
+            {
+                if (isLeft)
+                {
+                    if (splitContainer1.Panel2Collapsed)
+                        splitContainer1.Panel2Collapsed = false;
+                }
+                else
+                {
+                    if (splitContainer1.Panel1Collapsed)
+                        splitContainer1.Panel1Collapsed = false;
+                }
+            }
 
             tabBrowser.Text = meditor.MarkdownPage.Text;
             this.toolStripStatusLabel1.Text = "当前文档：" + meditor.FileName;
-
-            if (isLeft)
-            {
-                if (bhtml && splitContainer1.Panel2Collapsed)
-                    splitContainer1.Panel2Collapsed = false;
-            }
-            else
-            {
-                if (bhtml && splitContainer1.Panel1Collapsed)
-                    splitContainer1.Panel1Collapsed = false;
-            }
 
             //tabControl1.Focus();
             meditor.GetTextBox().Focus();
@@ -348,9 +352,8 @@ th,td{padding:5px;border: 1px solid #CCC;}
             string ext = Path.GetExtension(meditor.FileName);
             if (_regexExtMarkdowns.IsMatch(ext))
             {
-            string html="";
                 Markdown mark = new Markdown();
-                html = mark.Transform(marktext);
+                string html = mark.Transform(marktext);
                 rtbHtml.Text = html;
                 webBrowser1.DocumentText = meditorManager.GetHTMLStyle(html);
                 return true;

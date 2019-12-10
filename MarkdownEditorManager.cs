@@ -235,7 +235,7 @@ th,td{padding:5px;border: 1px solid #CCC;}
 ";
 		#endregion
 		
-		private bool _wordWrap = false;
+		private bool _wordWrap = true;
 		private int _tabWidth = 4;
 
 		private MRUManager mruManager;
@@ -254,10 +254,17 @@ th,td{padding:5px;border: 1px solid #CCC;}
 		{
 			if (string.IsNullOrEmpty(file))
 			{
-				file =Application.StartupPath+"\\未命名" + (noName++).ToString() + ".md";
+                file = Application.StartupPath + "\\未命名" + (noName++).ToString() + ".md";
 			}
 			else
 			{
+                if (_fileInd == 1)
+                {
+                    if (_editors.ContainsKey(0) && !_editors[0].AlreadyUpdate)
+                    {
+                        close(_editors[0]);
+                    }
+                }
 				foreach (MarkdownEditor me in _editors.Values)
 				{
 					if (me.FileName == file)
@@ -267,7 +274,6 @@ th,td{padding:5px;border: 1px solid #CCC;}
 					}
 				}
 			}
-
 
 			return openfile_(file);
 		}
@@ -286,17 +292,16 @@ th,td{padding:5px;border: 1px solid #CCC;}
 					string noti = "";
 					if (me.AlreadyUpdate) noti = "(重新打开，当前修改将丢失)";
 
-					if (MessageBox.Show(file + "在被其他软件已经修改，你需要重新打开吗"+noti+"？", "警告", MessageBoxButtons.YesNo) == DialogResult.No)
+					if (MessageBox.Show(file + "已经修改，你需要重新打开吗"+noti+"？", "警告", MessageBoxButtons.YesNo) == DialogResult.No)
 						return false;
 
 					bool rel = me.Openfile(file);
-					if (rel)
-					{
+                    if (rel)
+                    {
 						_tabparent.SelectedTab = me.MarkdownPage;
 					}
 
 					return rel;
-
 				}
 			}
 
@@ -304,25 +309,23 @@ th,td{padding:5px;border: 1px solid #CCC;}
 		}
 
 
-		private bool openfile_(string file)
-		{
-			TabPage markPage = new TabPage(GetDisplayName(file));
-			markPage.ToolTipText = file;
-			_tabparent.TabPages.Add(markPage);
-			markPage.Tag = _fileInd;
+        private bool openfile_(string file)
+        {
+            TabPage markPage = new TabPage(GetDisplayName(file));
+            markPage.ToolTipText = file;
+            _tabparent.TabPages.Add(markPage);
+            markPage.Tag = _fileInd;
 
-			MarkdownEditor meditor = new MarkdownEditor(_thisForm, markPage,_previewBrowser);
-			_editors.Add(_fileInd, meditor);
-			_fileInd++;
-			meditor.SetStyle(_bgColor, _foreColor, _font, _wordWrap, _tabWidth);
-			bool rel = meditor.Openfile(file);
-			if (rel)
-			{
-				_tabparent.SelectedTab = markPage;
-			}
+            MarkdownEditor meditor = new MarkdownEditor(_thisForm, markPage, _previewBrowser);
+            _editors.Add(_fileInd++, meditor);
+            bool rel = meditor.Openfile(file);
+            if (rel)
+            {
+                _tabparent.SelectedTab = markPage;
+            }
 
-			return rel;
-		}
+            return rel;
+        }
 
 		public MarkdownEditor GetCurrEditor()
 		{
@@ -440,7 +443,6 @@ th,td{padding:5px;border: 1px solid #CCC;}
 			System.IO.FileInfo fi = new FileInfo(meditor.FileName);
 
 			System.Diagnostics.Process.Start("explorer.exe", fi.Directory.ToString());
-
 		}
 		
 		public bool Close()
@@ -468,7 +470,6 @@ th,td{padding:5px;border: 1px solid #CCC;}
 			}
 
 			int ind=TabSelectRec.GetLast();
-			ind = TabSelectRec.GetLast();
 			if (ind > -1 && ind<_tabparent.TabCount)
 				_tabparent.SelectedIndex = ind;
 
@@ -535,7 +536,9 @@ th,td{padding:5px;border: 1px solid #CCC;}
 		}
 		public string GetHTMLStyle(string cont)
 		{
-			string htmlformat = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><style>"+_defcss  + @"</style></head><body><div class=""head""></div><div class=""content"">"+cont+"</div><div class=\"foot\"></div></body></html>";
+			string htmlformat = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><style>"+ _defcss +
+                MEditor.Properties.Resources.sunlight_dark + 
+                @"</style></head><body><div class=""content"">"+cont+ "</div><div class=\"foot\"></div><script>"+ MEditor.Properties.Resources.sunlight_all_min + ";Sunlight.highlightAll();</script></body></html>";
 
 			return htmlformat;
 		}

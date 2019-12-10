@@ -50,23 +50,27 @@ namespace MEditor
 			else
 			{
 				builder.AppendLine(_settings.HTML_StylesheetSource);
-			}
-			builder.AppendLine("</style>");
+            }
+            builder.AppendLine(MEditor.Properties.Resources.sunlight_dark);
+            builder.AppendLine("</style>");
 			if (isLivePreview)
 			{
 				if (_settings.HTML_EnableRelativeImagePaths && (fileName != "Markdown"))
 				{
 					builder.AppendLine(@"<base href='file:\\\" + Path.GetDirectoryName(fileName) + @"\'/>");
 				}
-				builder.AppendLine("<script type=\"text/javascript\">function loadMarkdown(input) { document.body.innerHTML = input; } </script>");
-				builder.AppendLine("<script type=\"text/javascript\">function scroller(input) {window.scrollTo(0, input * (document.body.scrollHeight - document.body.clientHeight)); } </script>");
+				builder.AppendLine("<script>function loadMarkdown(input) { document.body.innerHTML = input } </script>");
+				builder.AppendLine("<script>function scroller(input) {window.scrollTo(0, input * (document.body.scrollHeight - document.body.clientHeight)); } </script>");
+                builder.AppendLine("<script>");
+                builder.AppendLine(MEditor.Properties.Resources.sunlight_all_min);
+                builder.AppendLine("</script>");
+                builder.AppendLine("<script>Sunlight.highlightAll();</script>");
 			}
 			builder.AppendLine("</head>");
 			builder.AppendLine("<body>");
 			builder.AppendLine(input);
 			builder.AppendLine("</body>");
 			builder.AppendLine("</html>");
-			builder.Append("<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->");
 			return builder.ToString();
 		}
 
@@ -93,15 +97,18 @@ namespace MEditor
 
 		public static string ConvertTextToHTML(string plainText)
 		{
+			string str = string.Empty;
+
+            if (string.IsNullOrEmpty(plainText)) return str;
+
 			MarkdownOptions options = new MarkdownOptions {
 				AutoHyperlink = _settings.Markdown_AutoHyperlink,
 //				AutoNewLines = _settings.Markdown_AutoNewLines,
 				LinkEmails = _settings.Markdown_LinkEmails,
-				EncodeProblemUrlCharacters = _settings.Markdown_EncodeProblemUrlCharacters
+                AsteriskIntraWordEmphasis = _settings.Markdown_EncodeProblemUrlCharacters
 			};
 			Markdown markdown = new Markdown(options);
 			markdown.AutoNewLines=_settings.Markdown_AutoNewLines;
-			string str = string.Empty;
 			try
 			{
 				str = markdown.Transform(plainText);

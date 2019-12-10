@@ -35,3 +35,15 @@ D:\GitHub\MEditor\obj\Release\MEditor.frmCss.resources
 D:\GitHub\MEditor\obj\Release\MEditor.GoToLineDialog.resources
 D:\GitHub\MEditor\obj\Release\MEditor.frmReplace.resources
 D:\GitHub\MEditor\obj\Release\MDEditor.csproj.GenerateResource.Cache
+E:\OpenSource\MEditor\exeoutput\MDEditor.exe.config
+E:\OpenSource\MEditor\exeoutput\MDEditor.exe
+E:\OpenSource\MEditor\exeoutput\MDEditor.pdb
+E:\OpenSource\MEditor\obj\Release\MDEditor.csprojAssemblyReference.cache
+E:\OpenSource\MEditor\obj\Release\MEditor.frmMain.resources
+E:\OpenSource\MEditor\obj\Release\MEditor.Properties.Resources.resources
+E:\OpenSource\MEditor\obj\Release\MEditor.frmCss.resources
+E:\OpenSource\MEditor\obj\Release\MEditor.GoToLineDialog.resources
+E:\OpenSource\MEditor\obj\Release\MEditor.frmReplace.resources
+E:\OpenSource\MEditor\obj\Release\MDEditor.csproj.GenerateResource.cache
+E:\OpenSource\MEditor\obj\Release\MDEditor.exe
+E:\OpenSource\MEditor\obj\Release\MDEditor.pdb

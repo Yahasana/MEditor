@@ -20,3 +20,15 @@ D:\dodowork\TempProject\Csharp\dodola-MEditor-dc33bce\obj\Debug\GenerateResource
 D:\dodowork\TempProject\Csharp\dodola-MEditor-dc33bce\obj\Debug\GenerateResource.write.5.tlog
 D:\dodowork\TempProject\Csharp\dodola-MEditor-dc33bce\obj\Debug\GenerateResource.read.6.tlog
 D:\dodowork\TempProject\Csharp\dodola-MEditor-dc33bce\obj\Debug\GenerateResource.write.6.tlog
+E:\OpenSource\MEditor\obj\Debug\MDEditor.csprojAssemblyReference.cache
+E:\OpenSource\MEditor\obj\Debug\MEditor.frmMain.resources
+E:\OpenSource\MEditor\obj\Debug\MEditor.Properties.Resources.resources
+E:\OpenSource\MEditor\obj\Debug\MEditor.frmCss.resources
+E:\OpenSource\MEditor\obj\Debug\MEditor.GoToLineDialog.resources
+E:\OpenSource\MEditor\obj\Debug\MEditor.frmReplace.resources
+E:\OpenSource\MEditor\obj\Debug\MDEditor.csproj.GenerateResource.cache
+E:\OpenSource\MEditor\exeoutput\MDEditor.exe.config
+E:\OpenSource\MEditor\exeoutput\MDEditor.exe
+E:\OpenSource\MEditor\exeoutput\MDEditor.pdb
+E:\OpenSource\MEditor\obj\Debug\MDEditor.exe
+E:\OpenSource\MEditor\obj\Debug\MDEditor.pdb

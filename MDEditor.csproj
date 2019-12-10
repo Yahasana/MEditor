@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,10 +10,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MEditor</RootNamespace>
     <AssemblyName>MDEditor</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <StartupObject>MEditor.Program</StartupObject>
-    <ApplicationIcon>logo.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -24,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,12 +34,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ICSharpCode.AvalonEdit, Version=4.2.1.8805, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>libs\ICSharpCode.AvalonEdit.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -98,7 +97,6 @@
     </Compile>
     <Compile Include="MarkdownEditor.cs" />
     <Compile Include="MarkdownEditorManager.cs" />
-    <Compile Include="MarkdownSharp\Escapes.cs" />
     <Compile Include="MarkdownSharp\Markdown.cs" />
     <Compile Include="MRUManager.cs" />
     <Compile Include="Processers\EMark.cs" />
@@ -112,6 +110,7 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
@@ -142,13 +141,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\sunlight.dark.css" />
+    <None Include="Resources\sunlight-all-min.js" />
+    <None Include="AvalonEdit\exeoutput\net45\ICSharpCode.AvalonEdit.dll" />
+    <None Include="AvalonEdit\bin\Debug\net45\ICSharpCode.AvalonEdit.dll" />
     <Content Include="icos\icon_mark.png" />
     <Content Include="icos\ico_bgcolor.png" />
     <Content Include="icos\ico_color.png" />
     <Content Include="icos\ico_preview.png" />
     <Content Include="icos\ico_saveall.png" />
     <Content Include="icos\logo.ico" />
-    <Content Include="libs\ICSharpCode.AvalonEdit.dll" />
     <EmbeddedResource Include="frmCss.resx">
       <DependentUpon>frmCss.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -165,6 +167,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="resoucesdocs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="AvalonEdit\AvalonEdit.csproj">
+      <Project>{793ff60e-2850-4bff-aa51-b47c16beb61c}</Project>
+      <Name>AvalonEdit</Name>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

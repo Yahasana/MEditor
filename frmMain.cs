@@ -21,9 +21,7 @@ namespace MEditor
 	public partial class frmMain : Form
 	{
 		//private PrintDocument printDocument = new PrintDocument();
-
 		private MRUManager mruManager=null;
-
 
 		public frmMain()
 		{
@@ -73,7 +71,6 @@ namespace MEditor
 
 		private void 剪切TToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-
 			if (HaveSelection())
 				meditorManager.GetTextBox().Cut();
 		}
@@ -104,9 +101,7 @@ namespace MEditor
 
 		private void 粘贴PToolStripButton_Click(object sender, EventArgs e)
 		{
-
 			meditorManager.GetTextBox().Paste();
-
 		}
 
 		private void 粘贴PToolStripMenuItem_Click(object sender, EventArgs e)
@@ -158,30 +153,21 @@ namespace MEditor
 		{
 			TextEditor rtb = meditorManager.GetTextBox();
 			string dat=System.DateTime.Now.ToString();
-			rtb.Document.Insert(rtb.CaretOffset,dat);
-			
+			rtb.Document.Insert(rtb.CaretOffset,dat);			
 		}
-		
-		
 		private bool HaveSelection()
 		{
 			var editor = meditorManager.GetTextBox();
-			return editor != null &&
-				editor.SelectionLength>0;
+			return editor != null && editor.SelectionLength>0;
 		}
-		
-		
-
 		private void 字体toolStripButton10_Click(object sender, EventArgs e)
 		{
 			SelectFont();
 		}
-
 		private void 字体颜色ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			SelectForeColor();
 		}
-
 		private void 字体颜色toolStripButton11_Click(object sender, EventArgs e)
 		{
 			SelectForeColor();
@@ -308,9 +294,7 @@ namespace MEditor
 		////打印控制结束
 
 		#endregion
-
-
-
+            
 		private void 打印预览VToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			PreviewHtml();
@@ -374,7 +358,6 @@ namespace MEditor
 		private void toolStripButton1_Click(object sender, EventArgs e)
 		{
 			PreviewHtml();
-
 		}
 
 		private void 关闭所有ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -438,10 +421,7 @@ namespace MEditor
 
 		private void 自动转行ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			if (自动转行ToolStripMenuItem.Checked)
-				meditorManager.SetWordWrap(true);
-			else
-				meditorManager.SetWordWrap(false);
+			meditorManager.SetWordWrap(自动转行ToolStripMenuItem.Checked);
 		}
 
 		private void 背景颜色ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -462,11 +442,14 @@ namespace MEditor
 
 		private void frmMain_Load(object sender, EventArgs e)
 		{
-			this.Text = Application.ProductName + " V" + Application.ProductVersion;
+			this.Text = Application.ProductName + " v" + Application.ProductVersion;
 			//初始化最近打开的文件
 			mruManager = new MRUManager();
-			mruManager.Initialize(this,文件ToolStripMenuItem, 最近打开的文件ToolStripMenuItem,                        // Recent Files menu item
-			                      "Software\\YihuiStudio\\MEditor"); // Registry path to keep MRU list
+			mruManager.Initialize(this,
+                文件ToolStripMenuItem, 
+                最近打开的文件ToolStripMenuItem,    // Recent Files menu item
+			    "Software\\MEditor"               // Registry path to keep MRU list
+            ); 
 			mruManager.CurrentDir = ".....";           // default is current directory
 			mruManager.MaxMRULength = 10;             // default is 10
 			mruManager.MaxDisplayNameLength = 40;
@@ -511,8 +494,7 @@ namespace MEditor
 			
 			tabControl1.MouseDown += new MouseEventHandler(tabControl1_MouseDown);
 			tabControl2.MouseDown+=new MouseEventHandler(tabControl1_MouseDown);
-			//tabControl1.GotFocus += new EventHandler(tabControl1_GotFocus);
-			
+			//tabControl1.GotFocus += new EventHandler(tabControl1_GotFocus);			
 		}
 
 
@@ -540,7 +522,6 @@ namespace MEditor
 
 		void rtbHtml_DragEnter(object sender, DragEventArgs e)
 		{
-
 			if (e.Data.GetDataPresent(DataFormats.FileDrop))
 			{
 				e.Effect = DragDropEffects.Link;
@@ -585,14 +566,13 @@ namespace MEditor
 		{
 			MarkdownEditor me = meditorManager.GetCurrEditor();
 			if (me == null) return;
-						me.GetTextBox().SelectedText=me.GetTextBox().SelectedText.ToLower();
+			me.GetTextBox().SelectedText=me.GetTextBox().SelectedText.ToLower();
 		}
 
 		private void 替换ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			MarkdownEditor me = meditorManager.GetCurrEditor();
-			if (me == null) return;
-			
+			if (me == null) return;			
 		}
 
 		private void 查找替换ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -605,7 +585,6 @@ namespace MEditor
 		{
 			if (isLeft)
 			{
-
 				splitContainer1.Panel2Collapsed = !splitContainer1.Panel2Collapsed;
 			}
 			else
